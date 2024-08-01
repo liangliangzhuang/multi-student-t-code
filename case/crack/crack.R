@@ -34,7 +34,7 @@ y =  crack_dat[[3]] # EM 中常用数据
 sim_diff_dat = crack_dat[[4]] # 便于绘图（差分）
 sim_cum_dat = crack_dat[[5]] # 便于绘图（累计）
 
-# 2.模型选择 ========
+# 2.探索性分析 ========
 # 2.1 绘制退化数据路径图 ====
 thr = c(0.9,0.5,0.4)  
 dummy2 <- data.frame(PC = c("PC1","PC2","PC3"), Z = thr)
@@ -90,7 +90,7 @@ rt_seq = seq(0,100,0.1)
 
 item = 500; B_item = 1000
 t111 = Sys.time()
-source("case/crack/em/nolinear_T.r")
+source("case/crack/em/nolinear_T.r") # 8min -> item = 500; B_item = 1000
 Sys.time() - t111
 source("case/crack/em/nolinear_Wiener.r")
 

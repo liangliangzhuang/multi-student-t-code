@@ -255,17 +255,8 @@ for (h in 1:item) {
 
 bt_ci_T <- bt_ci
 
-# apply(bt_ci_T, 2, mean, na.rm = TRUE)
-# bt_ci_T[bt_ci_T[,13] <80,]
-
 BT_ALL = bt_ci_T[bt_ci_T[,13] <60 & bt_ci_T[,3]<1,]
 quan_nolinear_T <- data.frame(round(apply(bt_ci_T[bt_ci_T[,13] <60 & bt_ci_T[,3]<1,], 2, quantile, c(0.1, 0.5, 0.95), na.rm = TRUE), 5))
-
-# quan_nolinear_T[2,] = apply(bt_ci_T[bt_ci_T[,13] <60 & bt_ci_T[,3]<1,], 2, mean, na.rm = TRUE)
-# quan_nolinear_T <- data.frame(round(apply(bt_ci_T, 2, quantile, c(0.05, 0.5, 0.95), na.rm = TRUE), 5))
-
-# nolinear_T_R[,bt_ci_T[,13] <80]
-
 
 colnames(BT_ALL) = colnames(quan_nolinear_T) = c(paste0("eta",1:p, sep = ""), paste0("delta",1:p, sep = ""),
                               paste0("sigma",1:p, sep = ""), 

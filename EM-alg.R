@@ -1,3 +1,5 @@
+# ================== EM 算法 ==================
+# 1 常用函数 =====
 sumqua=function(A,B){
   nca=ncol(A)
   sum0=t(A[,1])%*%B%*%A[,1]
@@ -23,8 +25,8 @@ sumqua2=function(a,A,B){ # M步中 计算 sigma 的解
   return(sum0)
 }
 
-# EM算法 ============
-# EM算法—— student-t
+# 核心EM算法 ============
+# 2.1 EM算法 —— student-t
 EM_t <- function(type = "nonlinear", para, max_iter = 5000, eps = 10^-5,
                  y, y.diff, sumys) {
   
@@ -195,7 +197,7 @@ EM_t <- function(type = "nonlinear", para, max_iter = 5000, eps = 10^-5,
   ))
 }
 
-# EM算法—— Wiener 
+# 2.2 EM算法 —— Wiener 
 EM_Wiener <- function(type = "nonlinear", para, max_iter = 5000, eps = 10^-5,
                       y, y.diff, sumys) {
   # 非线性的情况========
