@@ -285,3 +285,5 @@ sumqua2 <- function(a, A, B) { # Calculate the solution of sigma in the M-step
   return(sum0)
 }
 
+
+

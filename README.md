@@ -1,34 +1,33 @@
-# A Multivariate Student-t Process Model for Dependent Tail-weighted Degradation Data
+# Codes for the paper "A Multivariate Student-t Process Model for Dependent Tail-weighted Degradation Data"
 
-> This work has been accepted for the IISE transactions. 
+> The paper has been accepted for publication in IISE Transactions and is currently in the process of online release. If you use the provided code in this project, please remember to cite the paper accordingly. Detailed citation information will be provided. If you have any questions or need help with the code, please submit them in the [issue](https://github.com/liangliangzhuang/multi-student-t-code/issues).
 
 
 The repository related to this paper is structured into two primary directories, each designed for specific functions as outlined below:
 
 
-1. case
-  - crack --> crack.R --> 0619-crack.RData
-  - PMB --> PMB_analysis.R --> 0617-PMB-final.RData
-  - `case_fct.R` 案例中所需的函数
-  - result 存储结果
+- case
+  - `case_fct.R`:
+    - Functions needed for case analysis, including `degradation.path.plot`, `EM_iter_plot`, `mean.path.fit.plot`, `R_cal`, `crack_path`, and sub-functions for EM such as `sumqua`, `sumqua0`, `sumqua1`, `sumqua2`.
+  - crack: 
+    - `crack.R`: Main file for analyzing Fatigue Crack Size Data.
+    - `Fatigue-crack-size.xlsx`: Corresponding data, originally introduced in [Meeker et al. (2022)](https://www.wiley.com/en-us/Statistical+Methods+for+Reliability+Data%2C+2nd+Edition-p-9781118115459) and further processed as described in Appendix H of [Fang et al. (2022)](https://www.sciencedirect.com/science/article/abs/pii/S0377221721008985).
+  - PMB:
+    - `PMB_analysis.R`: Main file for PMB analysis.
+    - `pmb_dat.RData`: Corresponding data.
+    - `vis.R`: Graphical visualization, includes: `boxplot_path`, `coutour_plot`, `qqplot_PC`
+    - Bootstrap: Contains bootstrap codes for four models to calculate interval estimates. Includes R files: `BS_nolinear_T.R`, `BS_linear_T.R`, `BS_nolinear_Wiener.R`, `BS_linear_Wiener.R`.
+  - result: Stores results of two case analyses.
 
-2. `EM-alg.R` EM 中使用到的基础函数和核心算法。
+- `Model_est.R`: Contains second-order parameter estimation methods for four models. It will be used for model fitting of two datasets.
 
 
 ## Tutorial
 
-For optimal interaction with these codes, it is recommended to open "student-t.Rproj" using RStudio, install all necessary packages as initially specified, and proceed to execute the code sequentially, section by section.
+For optimal interaction with these codes, it is recommended to open "`student-t.Rproj`" using RStudio, install all necessary packages as initially specified, and proceed to execute the code sequentially, section by section.
 
 可以运行代码 `crack.R` 和 `PMB_analysis.R` 来分别分析两个数据集。其中包含了：数据导入和处理，数据探索性分析，模型拟合和选择，可靠性分析等内容。
 
-如果你有任何问题，可以在
-
-
-## Example 
-
-这里我们以 Crack 数据为例：
-
-###
 
 
 
