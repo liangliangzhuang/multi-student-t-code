@@ -12,18 +12,23 @@ The repository related to this paper is structured into two primary directories,
   - `case_fct.R` 案例中所需的函数
   - result 存储结果
 
-3. `EM-alg.R` EM中使用到的基础函数和核心算法。
+2. `EM-alg.R` EM 中使用到的基础函数和核心算法。
+
+
+## Tutorial
+
+For optimal interaction with these codes, it is recommended to open "student-t.Rproj" using RStudio, install all necessary packages as initially specified, and proceed to execute the code sequentially, section by section.
+
+可以运行代码 `crack.R` 和 `PMB_analysis.R` 来分别分析两个数据集。其中包含了：数据导入和处理，数据探索性分析，模型拟合和选择，可靠性分析等内容。
+
+如果你有任何问题，可以在
+
+
+## Example 
+
+这里我们以 Crack 数据为例：
+
+###
 
 
 
-If you have used our code for research purposes, please cite the publication mentioned above. For the sake of simplicity, we provide the Bibtex format:
-
-```
-@article{zhuang2024remaining,
-  title={Remaining useful life prediction for two-phase degradation model based on reparameterized inverse Gaussian process},
-  author={Zhuang, Liangliang and Xu, Ancha and Wang, Yijun and Tang, Yincai},
-  journal={European Journal of Operational Research},
-  year={2024},
-  doi={10.1016/j.ejor.2024.06.032}
-}
-```
