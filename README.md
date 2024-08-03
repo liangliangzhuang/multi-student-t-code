@@ -8,14 +8,14 @@ The repository related to this paper is structured into two primary directories,
 
 - case
   - `case_fct.R`:
-    - Functions needed for case analysis, including `degradation.path.plot`, `EM_iter_plot`, `mean.path.fit.plot`, `R_cal`, `crack_path`, and sub-functions for EM such as `sumqua`, `sumqua0`, `sumqua1`, `sumqua2`.
+    - Functions needed for case analysis, including `degradation.path.plot()`, `EM_iter_plot()`, `mean.path.fit.plot()`, `R_cal()`, `crack_path()`, and sub-functions for EM such as `sumqua()`, `sumqua0()`, `sumqua1()`, `sumqua2()`.
   - crack: 
     - `crack.R`: Main file for analyzing Fatigue Crack Size Data.
     - `Fatigue-crack-size.xlsx`: Corresponding data, originally introduced in [Meeker et al. (2022)](https://www.wiley.com/en-us/Statistical+Methods+for+Reliability+Data%2C+2nd+Edition-p-9781118115459) and further processed as described in Appendix H of [Fang et al. (2022)](https://www.sciencedirect.com/science/article/abs/pii/S0377221721008985).
   - PMB:
     - `PMB_analysis.R`: Main file for PMB analysis.
     - `pmb_dat.RData`: Corresponding data.
-    - `vis.R`: Graphical visualization, includes: `boxplot_path`, `coutour_plot`, `qqplot_PC`
+    - `vis.R`: Graphical visualization, includes: `boxplot_path()`, `coutour_plot()`, `qqplot_PC()`.
     - Bootstrap: Contains bootstrap codes for four models to calculate interval estimates. Includes R files: `BS_nolinear_T.R`, `BS_linear_T.R`, `BS_nolinear_Wiener.R`, `BS_linear_Wiener.R`.
   - result: Stores results of two case analyses.
 
@@ -26,7 +26,7 @@ The repository related to this paper is structured into two primary directories,
 
 For optimal interaction with these codes, it is recommended to open "`student-t.Rproj`" using RStudio, install all necessary packages as initially specified, and proceed to execute the code sequentially, section by section.
 
-可以运行代码 `crack.R` 和 `PMB_analysis.R` 来分别分析两个数据集。其中包含了：数据导入和处理，数据探索性分析，模型拟合和选择，可靠性分析等内容。
+You can run the `crack.R` and `PMB_analysis.R` scripts to analyze the two datasets, respectively. These include: data import and processing, exploratory data analysis, model fitting and selection, among other contents.
 
 
 
