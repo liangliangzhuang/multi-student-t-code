@@ -1,14 +1,3 @@
----
-title: "README"
-author: "Liangliang Zhuang"
-date: "2024-08-04"
-output: html_document
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 # Codes for the paper "A Multivariate Student-t Process Model for Dependent Tail-weighted Degradation Data"
 
 > The paper has been accepted for publication in IISE Transactions and is currently in the process of online release. If you use the provided code in this project, please remember to cite the paper accordingly. Detailed citation information will be provided. If you have any questions or need help with the code, please submit them in the [issue](https://github.com/liangliangzhuang/multi-student-t-code/issues).
@@ -39,8 +28,5 @@ For optimal interaction with these codes, it is recommended to open "`student-t.
 You can run the `crack.R` and `PMB_analysis.R` scripts to analyze the two datasets, respectively. These include: data import and processing, exploratory data analysis, model fitting and selection, among other contents.
 
 
-```{r}
-1
-```
 
 
