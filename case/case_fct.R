@@ -89,20 +89,14 @@ degradation.path.plot = function(data = sim_cum_dat, leg.pos = "none",ech = 5, s
   return(p1)
 }
 
-
 # EM Iteration ====
-f1_names = list(expression(hat(eta)[1]), expression(hat(eta)[2]), 
-                expression(hat(delta)[1]), expression(hat(delta)[2]),
-                expression(hat(sigma)[1]), expression(hat(sigma)[2]), 
-                expression(hat(rho)[12]), expression(hat(nu)))
-
-EM_iter_plot = function(para_iter, f_names = f1_names){
+EM_iter_plot = function(para_iter, f_names = f1_names, orders=orders){
   # Adding mathematical formulas
   f_labeller <- function(variable, value){return(f_names[value])}
   d1 = para_iter %>% data.frame() %>% 
     mutate("index" = 1:dim(.)[1]) %>% 
     pivot_longer(cols= !index, names_to = "para", values_to = "value") 
-  d1$para = factor(d1$para, ordered = TRUE) #levels = orders, 
+  d1$para = factor(d1$para, ordered = TRUE, levels = orders) #levels = orders, 
   
   p1 = d1 %>% ggplot(aes(index,value)) + #,color = para
     geom_line() + 
@@ -112,7 +106,6 @@ EM_iter_plot = function(para_iter, f_names = f1_names){
     xlab("Iteration")
   return(p1)
 }
-
 
 # Fitted Path Plot ====
 mean.path.fit.plot = function(data = Yhat_dat, true_data = sim_dat[[4]], leg.pos = "none",ech = 5,ci = FALSE){
@@ -210,7 +203,6 @@ R_cal = function(r_t = rt_seq, para3, r_SIG0 = bt_re[[3]], B = 1000, yz, scen = 
 
   return(list(r_dat,r_p1))
 }
-
 
 # Data preprocessing of Fatigue Crack Size Data 
 crack_path = function(led_cum, led_diff, p=p, m=m, n=n){

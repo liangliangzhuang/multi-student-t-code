@@ -78,13 +78,14 @@ em_re_nolinear_T_no_na <- em_re_nolinear_T$para_iter[complete.cases(em_re_noline
 em_re_nolinear_T_no_na = em_re_nolinear_T_no_na[,-c(10:12)]
 colnames(em_re_nolinear_T_no_na) = c(paste0("eta",1:p, sep = ""), paste0("delta",1:p, sep = ""),
                                      paste0("sigma",1:p, sep = ""),  "v")
+# Plot
 f1_names <- list('eta1' = TeX(c("$\\hat{\\eta}_{1}$")), 'eta2' = TeX(c("$\\hat{\\eta}_{2}$")),'eta3' = TeX(c("$\\hat{\\eta}_{3}$")),
                  'delta1' = TeX(c("$\\hat{\\delta}^2_{1}$")), 'delta2' = TeX(c("$\\hat{\\delta}^2_{2}$")), 'delta3' = TeX(c("$\\hat{\\delta}^2_{3}$")),
                  'sigma1' = TeX(c("$\\hat{\\sigma}^2_{1}$")), 'sigma2' = TeX(c("$\\hat{\\sigma}^2_{2}$")),'sigma3' = TeX(c("$\\hat{\\sigma}^2_{3}$")),
-                 # "gamma1" = TeX(c("$\\gamma_{1}$")), "gamma2" = TeX(c("$\\gamma_{2}$")), "gamma3" = TeX(c("$\\gamma_{3}$"))
                  'v' = TeX(c("$\\hat{\\nu}$")))
-EM_iter_plot(para_iter = em_re_nolinear_T_no_na,f_names = f1_names) # Plot EM Algorithm Iterations
-# ggsave("case/result/crack/EM-iter-exp_T.pdf", height = 5, width = 9)
+orders = unique(colnames(em_re_nolinear_T_no_na))
+EM_iter_plot(para_iter = em_re_nolinear_T_no_na, f_names = f1_names, orders=orders) # Plot EM Algorithm Iterations
+# ggsave("case/result/crack/FCS-EM-iter-exp_T.pdf", height = 5, width = 9)
 
 
 # M^W_e
@@ -99,12 +100,15 @@ f1_names <- list('eta1' = TeX(c("$\\hat{\\eta}_{1}$")), 'eta2' = TeX(c("$\\hat{\
                  'delta1' = TeX(c("$\\hat{\\delta}^2_{1}$")), 'delta2' = TeX(c("$\\hat{\\delta}^2_{2}$")), 'delta3' = TeX(c("$\\hat{\\delta}^2_{3}$")),
                  'sigma1' = TeX(c("$\\hat{\\sigma}^2_{1}$")), 'sigma2' = TeX(c("$\\hat{\\sigma}^2_{2}$")),'sigma3' = TeX(c("$\\hat{\\sigma}^2_{3}$"))
 )
-EM_iter_plot(para_iter = em_re_nolinear_Wiener_no_na,f_names = f1_names) # 绘制EM迭代图
-# ggsave("case/result/crack/EM-iter-exp_Wiener.pdf", height = 5, width = 9)
+
+EM_iter_plot(para_iter = em_re_nolinear_Wiener_no_na,f_names = f1_names,orders=orders) # 绘制EM迭代图
+# ggsave("case/result/crack/FCS-EM-iter-exp_Wiener.pdf", height = 5, width = 9)
 
 # AIC
 c(em_re_nolinear_T$aic, em_re_nolinear_Wiener$aic)
 # Point estimates
 cbind(em_re_nolinear_T$para2, em_re_nolinear_Wiener$para2)
+
+# save.image(file = paste("case/result/crack/crack-final-data.RData", sep = ""))
 
 

@@ -1,5 +1,5 @@
 # ======================================================================
-# ========================= PMB Data Analysis  ===========================
+# ========================= PMB Data Analysis  =========================
 # ======================================================================
 # Load packages
 if (!require(pacman)) install.packages("pacman")
@@ -34,14 +34,14 @@ data2 = map(sim_cum_dat, ~ mutate(.x, Time = 0:(n()-1)))
 merged_df2 <- bind_rows(data2, .id = "Unit")
 cal_dat2 = merged_df2 %>% pivot_longer(cols = !c(Time,Unit), names_to = "PC", values_to = "Value")
 boxplot = boxplot_path(time2 = seq(3,m,3), data = cal_dat2)
-boxplot[[1]]
+boxplot[[1]] + xlab(TeX(r'(Time(days$\times 3$))')) + ylab("Value")
 # ggsave("case/result/PMB/boxplot.pdf", height = 4, width = 5)
 
 # 2.3 Contour plot
 sim3 = do.call(rbind, sim_diff_dat) 
 sim3 = data.frame(sim3)
 sim3$n = rep(1:n, each = m)
-coutour_plot(sim3=sim3)
+coutour_plot(sim3 = sim3)
 
 # 2.4 Q-Q plot
 qqplot_PC(time2 = seq(3,m,3), newdata = boxplot[[2]], newdata2 = boxplot[[3]])
@@ -52,40 +52,51 @@ qqplot_PC(time2 = seq(3,m,3), newdata = boxplot[[2]], newdata2 = boxplot[[3]])
 types = "power"
 # Initial parameter 
 para <- list("est_etas" = rep(8, p), "est_delta" = rep(1, p), "est_sig0" = diag(p), "est_v" = 4)
-
+f1_names <- list('eta1' = TeX(c("$\\hat{\\eta}_{1}$")), 'eta2' = TeX(c("$\\hat{\\eta}_{2}$")),
+                 'delta1' = TeX(c("$\\hat{\\delta}^2_{1}$")), 'delta2' = TeX(c("$\\hat{\\delta}^2_{2}$")), 
+                 'sigma1' = TeX(c("$\\hat{\\sigma}^2_{1}$")), 'sigma2' = TeX(c("$\\hat{\\sigma}^2_{2}$")),
+                 'rho12' = expression(hat(rho)[12]),
+                 'v' = TeX(c("$\\hat{\\nu}$")))
+index = c(paste0("eta",1:p, sep = ""), paste0("delta",1:p, sep = ""),
+          paste0("sigma",1:p, sep = ""), "rho12", "v")
+orders = unique(index)
 # M_l
 em_re_linear_T = EM_linear_T(max_iter = 5000, eps = 10^-5, y = y, y.diff= y.diff, sumys = sumys)
-em_re_linear_T_no_na <- em_re_linear_T$para_iter[complete.cases(em_re_linear_T$para_iter), ]
-EM_iter_plot(para_iter = em_re_linear_T_no_na)
-ggsave("case/result/PMB/EM-iter-linear_T.pdf", height = 3, width = 11)
+em_re_linear_T_no_na <- data.frame(em_re_linear_T$para_iter[complete.cases(em_re_linear_T$para_iter), ])
+colnames(em_re_linear_T_no_na) = index
+EM_iter_plot(para_iter = em_re_linear_T_no_na, f_names = f1_names, orders=orders)
+# ggsave("case/result/PMB/PMB-EM-iter-M_l.pdf", height = 3, width = 11)
 
 # M_p
 em_re_nolinear_T <- EM_nonlinear_T(para = para, type = types, max_iter = 5000, eps = 10^-5, y = y, y.diff = y.diff, sumys = sumys)
 em_re_nolinear_T_no_na <- em_re_nolinear_T$para_iter[complete.cases(em_re_nolinear_T$para_iter), ]
-EM_iter_plot(para_iter = em_re_nolinear_T_no_na) 
-ggsave("case/result/PMB/EM-iter-non-linear_T.pdf", height = 3, width = 11)
+colnames(em_re_nolinear_T_no_na) = index
+EM_iter_plot(para_iter = em_re_nolinear_T_no_na, f_names = f1_names, orders=orders)
+# ggsave("case/result/PMB/PMB-EM-iter-M_p.pdf", height = 3, width = 11)
 
 # M^W_l
 em_re_linear_Wiener = EM_linear_Wiener(max_iter = 5000, eps = 10^-5, y = y, y.diff= y.diff, sumys = sumys)
 em_re_linear_Wiener_no_na <- em_re_linear_Wiener$para_iter[complete.cases(em_re_linear_Wiener$para_iter), ]
-EM_iter_plot(para_iter = em_re_linear_Wiener_no_na)
-ggsave("case/result/PMB/EM-iter-linear_Wiener-em.pdf", height = 3, width = 11)
+colnames(em_re_linear_Wiener_no_na) = index
+EM_iter_plot(para_iter = em_re_linear_Wiener_no_na[,-8], f_names = f1_names, orders=orders) # omit v
+# ggsave("case/result/PMB/PMB-EM-iter-M^W_l.pdf", height = 3, width = 11)
 
 # M^W_p
 em_re_nolinear_Wiener <- EM_nonlinear_Wiener(para = para, type=types, max_iter = 5000, eps = 10^-5, y = y, y.diff = y.diff, sumys = sumys)
 em_re_nolinear_Wiener_no_na <- em_re_nolinear_Wiener$para_iter[complete.cases(em_re_nolinear_Wiener$para_iter), ]
-EM_iter_plot(para_iter = em_re_nolinear_Wiener_no_na) 
-ggsave("case/result/PMB/EM-iter-non-linear_Wiener-em.pdf", height = 3, width = 11)
+colnames(em_re_nolinear_Wiener_no_na) = index
+EM_iter_plot(para_iter = em_re_nolinear_Wiener_no_na[,-8],f_names = f1_names, orders=orders)
+# ggsave("case/result/PMB/PMB-EM-iter-M^W_p.pdf", height = 3, width = 11)
 
 # AIC
 c(em_re_linear_T$aic, em_re_nolinear_T$aic, em_re_linear_Wiener$aic, em_re_nolinear_Wiener$aic)
 # Point estimates
-cbind(em_re_linear_T$para,em_re_nolinear_T$para, em_re_linear_Wiener$para, em_re_nolinear_Wiener$para)
+cbind(em_re_linear_T$para, em_re_nolinear_T$para, em_re_linear_Wiener$para, em_re_nolinear_Wiener$para)
 
 # Interval estimate (Bootstrap) =========
 rt_seq = seq(0,100,0.1)
 thr = c(400,600) 
-item = 100; B_item = 5000
+item = 500; B_item = 5000
 source("case/PMB/Bootstrap/BS_nolinear_T.r")
 source("case/PMB/Bootstrap/BS_linear_T.r")
 source("case/PMB/Bootstrap/BS_linear_Wiener.r")
@@ -100,14 +111,9 @@ para_quan
 em_para_final = as.numeric(quan_nolinear_T[2,])
 Yhat_dat = list()
 Yhat_dat[[1]] = matrix(NA,m+1,p)
-scen = "non-linear"
 for(j in 1:p){
-  if(scen == "linear"){
-    mean_t = em_para_final[j] * 0:m # Calculate the average degradation
-  } else{ # power form
-    gamma_hat = as.numeric(em_para_final[(length(em_para_final)-p+1):length(em_para_final)])
-    mean_t = em_para_final[j] * t[j,]^gamma_hat[j] 
-  }
+  gamma_hat = as.numeric(em_para_final[(length(em_para_final)-p+1):length(em_para_final)])
+  mean_t = em_para_final[j] * t[j,]^gamma_hat[j] 
   Yhat_dat[[1]][,j] = mean_t
   Yhat_dat[[1]] = data.frame(Yhat_dat[[1]])
   colnames(Yhat_dat[[1]]) = paste0("PC",1:p,seq="")
@@ -115,7 +121,6 @@ for(j in 1:p){
 mean.path.fit.plot(data=Yhat_dat, true_data = sim_dat[[5]], leg.pos = "none",ech = 10, ci = FALSE) +
   xlab(TeX(r'(Time(days$\times 3$))')) + ylab(TeX(r'($Y_{k}(t)$)'))
 # ggsave("case/result/PMB/crack-path-fit-mean.pdf", height = 3, width = 4)
-
 
 # Correlation coefficient ===========================================
 # sigma_{1,2}
@@ -181,7 +186,7 @@ ad.test(cdf.Mt1.PFT)
 
 
 pdf("case/result/PMB/R-com-pmb.pdf",width=8, height=6)
-plot(t2, cdf.MW1, type = "l", col = "white", xlim = c(20,60),ylim = c(0,1), xlab = "Time", ylab = "Probability", lwd = 2, xaxt = 'n', lty = 2)
+plot(t2, cdf.MW1, type = "l", col = "white", xlim = c(20,60),ylim = c(0,1), xlab = TeX(r'(Time(days$\times 3$))'), ylab = "Probability", lwd = 2, xaxt = 'n', lty = 2)
 polygon(c(t2.t, rev(t2.t)), c(cdf.90lcl.Mt1, rev(cdf.90ucl.Mt1)), col = "skyblue", border = F)
 axis(1, at = seq(20,60,by=10)) 
 points(sort(pft), yqq, pch = 19, cex = 0.8)

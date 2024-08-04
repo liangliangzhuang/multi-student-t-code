@@ -23,8 +23,8 @@ boxplot_path = function(time2 = seq(3,m,3), data = cal_dat2){
     geom_boxplot() +
     facet_wrap(vars(PC),scale="free") +
     scale_fill_viridis(discrete = TRUE,alpha = 0.8) + 
-    theme_bw() + theme(panel.grid = element_blank(),legend.position = "none") +
-    xlab("Time") + ylab("Y(t)")
+    theme_bw() + theme(panel.grid = element_blank(),legend.position = "none") #+
+    # xlab("Time") + ylab("Y(t)")
   # ggsave(paste("case/PMB/result/box_plot.pdf",sep=""), height = 5, width = 8)
   return(list(box_plot, newdata, newdata2))
 }

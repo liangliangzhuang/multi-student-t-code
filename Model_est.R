@@ -449,10 +449,13 @@ EM_linear_Wiener <- function(max_iter = 1000, eps = 10^-5, y = y, y.diff = y.dif
     est_sig0_cor2 <- cov2cor(est_sig0)
     est_sig0_new <- c(sqrt(diag(est_sig0)), est_sig0_cor2[upper.tri(est_sig0_cor2, diag = F)])
     new <- c(est_etas, est_delta, est_sig0_new, est_v) 
+    est_sig0_new2 <- sqrt(c(diag(est_sig0), est_sig0[upper.tri(est_sig0, diag = F)]))
+    new2 = c(est_etas, est_delta, est_sig0_new2, est_v)
     if (all((abs(new - old[iter, ])) < eps)) {
       con <- TRUE
       old[iter + 1, ] <- new
     }
+  
   }
 
 
@@ -514,7 +517,8 @@ EM_linear_Wiener <- function(max_iter = 1000, eps = 10^-5, y = y, y.diff = y.dif
     "para" = c(new, rep(NA, p)),
     "est_sig0" = est_sig0,
     "logl" = Q_value, 
-    "aic" = aic
+    "aic" = aic,
+    "para2" = c(new2, rep(NA, p)) 
   ))
 }
 
@@ -656,6 +660,8 @@ EM_nonlinear_Wiener <- function(para, type, max_iter = 5000, eps = 10^-5,
     est_sig0_cor2 <- cov2cor(est_sig0)
     est_sig0_new <- c(sqrt(diag(est_sig0)), est_sig0_cor2[upper.tri(est_sig0_cor2, diag = F)]) 
     new <- c(est_etas, est_delta, est_sig0_new, est_v) # eta, delta, sig0, v
+    est_sig0_new2 <- sqrt(c(diag(est_sig0), est_sig0[upper.tri(est_sig0, diag = F)]))
+    new2 = c(est_etas, est_delta, est_sig0_new2, est_v)
     if (all((abs(new - old[iter, ])) < eps) | iter > max_iter) {
       con <- TRUE
       old[iter + 1, ] <- new
@@ -725,6 +731,7 @@ EM_nonlinear_Wiener <- function(para, type, max_iter = 5000, eps = 10^-5,
     "para" = c(new, est_scale), 
     "est_sig0" = est_sig0,
     "logl" = Q_value,
-    "aic" = aic
+    "aic" = aic,
+    "para2" = c(new2, est_scale) 
   ))
 }

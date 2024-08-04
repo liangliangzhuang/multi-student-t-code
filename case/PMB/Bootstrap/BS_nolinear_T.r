@@ -1,15 +1,15 @@
-# 自助法 ==================
+# ============== Bootstrap for non-linear T ==================
 em_para_final <- em_re_nolinear_T[[2]]
 est_v = em_para_final[length(em_para_final)-p]
-bt_ci <- matrix(NA, item, 3*p + 1 + p*(p+1)/2) #p=2时  10
+bt_ci <- matrix(NA, item, 3*p + 1 + p*(p+1)/2)
 nolinear_T_R <- matrix(NA, length(rt_seq), item)
 for (h in 1:item) {
-  # 1. 产生伪样本数据
+  # 1. Generate pseudo sample data
   bt_dat <- sim_path(par = em_re_nolinear_T[[2]], v = est_v, SIG0 = em_re_nolinear_T[[3]], scen = types)
   y.diff_bt <- bt_dat[[1]]
   sumys_bt <- bt_dat[[2]]
-  y_bt <- bt_dat[[3]] # EM中常用数据
-  # 2. EM 估计
+  y_bt <- bt_dat[[3]] 
+  # 2. Two-stage estimation
   para_bt <- list("est_etas" = em_re_nolinear_T[[2]][1:p], "est_delta" = em_re_nolinear_T[[2]][1:p + p],
                   "est_sig0" = em_re_nolinear_T[[3]], "est_v" = est_v)
   
@@ -35,7 +35,5 @@ colnames(quan_nolinear_T) = c(paste0("eta",1:p, sep = ""), paste0("delta",1:p, s
                               paste0("rho",1:(p*(p-1)/2), sep = ""), "v", 
                               paste0("gamma",1:p, sep = ""))
 quan_nolinear_T
-
-
 
 

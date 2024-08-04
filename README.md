@@ -28,5 +28,3 @@ For optimal interaction with these codes, it is recommended to open "`student-t.
 You can run the `crack.R` and `PMB_analysis.R` scripts to analyze the two datasets, respectively. These include: data import and processing, exploratory data analysis, model fitting and selection, among other contents.
 
 
-
-
