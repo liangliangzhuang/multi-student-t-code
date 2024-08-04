@@ -1,10 +1,20 @@
+---
+title: "README"
+author: "Liangliang Zhuang"
+date: "2024-08-04"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
 # Codes for the paper "A Multivariate Student-t Process Model for Dependent Tail-weighted Degradation Data"
 
 > The paper has been accepted for publication in IISE Transactions and is currently in the process of online release. If you use the provided code in this project, please remember to cite the paper accordingly. Detailed citation information will be provided. If you have any questions or need help with the code, please submit them in the [issue](https://github.com/liangliangzhuang/multi-student-t-code/issues).
 
 
-The repository related to this paper is structured into two primary directories, each designed for specific functions as outlined below:
-
+The repository structure relevant to this article is outlined below:
 
 - case
   - `case_fct.R`:
@@ -19,7 +29,7 @@ The repository related to this paper is structured into two primary directories,
     - Bootstrap: Contains bootstrap codes for four models to calculate interval estimates. Includes R files: `BS_nolinear_T.R`, `BS_linear_T.R`, `BS_nolinear_Wiener.R`, `BS_linear_Wiener.R`.
   - result: Stores results of two case analyses.
 
-- `Model_est.R`: Contains second-order parameter estimation methods for four models. It will be used for model fitting of two datasets.
+- `Model_est.R`: Contains two-stage parameter estimation methods for four models. It will be used for model fitting of two datasets.
 
 
 ## Tutorial
@@ -29,5 +39,8 @@ For optimal interaction with these codes, it is recommended to open "`student-t.
 You can run the `crack.R` and `PMB_analysis.R` scripts to analyze the two datasets, respectively. These include: data import and processing, exploratory data analysis, model fitting and selection, among other contents.
 
 
+```{r}
+1
+```
 
 
