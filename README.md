@@ -1,21 +1,5 @@
 # Codes for the paper "A Multivariate Student-t Process Model for Dependent Tail-weighted Degradation Data"
 
-> The paper has been accepted for publication in IISE Transactions and is currently in the process of online release. If you use the provided code in this project, please remember to cite the paper accordingly. Detailed citation information is
-```bibtex
-@article{xu2024multivariate,
-  title={A Multivariate Student-t Process Model for Dependent Tail-weighted Degradation Data},
-  author={Xu, Ancha and Fang, Guanqi and Zhuang, Liangliang and Gu, Cheng},
-  journal={IISE Transactions},
-  number={just-accepted},
-  pages={1--23},
-  year={2024},
-  publisher={Taylor & Francis}
-}
-```
-
->  If you have any questions or need help with the code, please submit them in the [issue](https://github.com/liangliangzhuang/multi-student-t-code/issues).
-
-
 The repository structure relevant to this article is outlined below:
 
 - case
@@ -45,3 +29,32 @@ You can run the `crack.R` and `PMB_analysis.R` scripts to analyze the two datase
 |-----------------------------------------|--------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------|------------------------------------------------------|
 | Figures 1, 2, 8, 9, Figure S1 and Table 2 | case/PMB/pmb_dat.RData               | Model_est.R<br>case/case_fct.R<br>case/PMB/vis.R<br>case/PMB/Bootstrap/<br>- BS_linear_T.R<br>- BS_nolinear_T.R<br>- BS_linear_Wiener.R<br>- BS_nolinear_Wiener.R | The results are in case/result/PMB and include: Figures 1, 2, 8, 9, Figure S1 and Table 2.                  | 10 minutes                                           |
 | Figure 10, Figure S2, and Table 3        | case/crack/Fatigue-crack-size.xlsx   | Model_est.R<br>case/case_fct.R<br>crack/crack.R                                                                                                                      | The results are in case/result/crack and include: Figure 10, Figure S2, and Table 3 (AIC and point estimate) | 1 minute                                            |
+
+
+
+> The paper has been accepted for publication in IISE Transactions and is currently in the process of online release. If you use the provided code in this project, please remember to cite the paper accordingly. Detailed citation information is
+```bibtex
+@article{xu2024multivariate,
+  title={A Multivariate Student-t Process Model for Dependent Tail-weighted Degradation Data},
+  author={Xu, Ancha and Fang, Guanqi and Zhuang, Liangliang and Gu, Cheng},
+  journal={IISE Transactions},
+  number={just-accepted},
+  pages={1--23},
+  year={2024},
+  publisher={Taylor & Francis}
+}
+```
+
+>  If you have any questions or need help with the code, please submit them in the [issue](https://github.com/liangliangzhuang/multi-student-t-code/issues).
+
+
+
+
+
+
+
+
+
+
+
+
