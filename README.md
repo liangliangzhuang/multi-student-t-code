@@ -32,7 +32,10 @@ You can run the `crack.R` and `PMB_analysis.R` scripts to analyze the two datase
 
 
 
-> The paper has been accepted for publication in IISE Transactions and is currently in the process of online release. If you use the provided code in this project, please remember to cite the paper accordingly. Detailed citation information is
+## Note 
+
+The paper has been accepted for publication in IISE Transactions and is currently in the process of online release. If you use the provided code in this project, please remember to cite the paper accordingly. Detailed citation information is
+
 ```bibtex
 @article{xu2024multivariate,
   title={A Multivariate Student-t Process Model for Dependent Tail-weighted Degradation Data},
@@ -45,7 +48,7 @@ You can run the `crack.R` and `PMB_analysis.R` scripts to analyze the two datase
 }
 ```
 
->  If you have any questions or need help with the code, please submit them in the [issue](https://github.com/liangliangzhuang/multi-student-t-code/issues).
+If you have any questions or need help with the code, please submit them in the [issue](https://github.com/liangliangzhuang/multi-student-t-code/issues).
 
 
 
