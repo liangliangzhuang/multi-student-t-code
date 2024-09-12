@@ -1,6 +1,19 @@
 # Codes for the paper "A Multivariate Student-t Process Model for Dependent Tail-weighted Degradation Data"
 
-> The paper has been accepted for publication in IISE Transactions and is currently in the process of online release. If you use the provided code in this project, please remember to cite the paper accordingly. Detailed citation information will be provided. If you have any questions or need help with the code, please submit them in the [issue](https://github.com/liangliangzhuang/multi-student-t-code/issues).
+> The paper has been accepted for publication in IISE Transactions and is currently in the process of online release. If you use the provided code in this project, please remember to cite the paper accordingly. Detailed citation information is
+```bibtex
+@article{xu2024multivariate,
+  title={A Multivariate Student-t Process Model for Dependent Tail-weighted Degradation Data},
+  author={Xu, Ancha and Fang, Guanqi and Zhuang, Liangliang and Gu, Cheng},
+  journal={IISE Transactions},
+  number={just-accepted},
+  pages={1--23},
+  year={2024},
+  publisher={Taylor & Francis}
+}
+```
+
+>  If you have any questions or need help with the code, please submit them in the [issue](https://github.com/liangliangzhuang/multi-student-t-code/issues).
 
 
 The repository structure relevant to this article is outlined below:
